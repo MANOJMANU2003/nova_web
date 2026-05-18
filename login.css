@@ -1,0 +1,103 @@
+.body{
+      background:#f3f4f6;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .navbar{
+      background:#fff;
+      border-bottom:1px solid #ddd;
+    }
+    .brand{
+      font-weight:700;
+      font-size:28px;
+    }
+    .login-wrapper{
+      max-width:1200px;
+      margin:60px auto;
+    }
+    .login-card{
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid #ddd;
+    }
+    .left-panel{
+      position:relative;
+      min-height:650px;
+      background:
+      url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop')
+      center/cover no-repeat;
+    }
+    .left-overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+    }
+    .left-content{
+      position:absolute;
+      bottom:50px;
+      left:50px;
+      color:#fff;
+      z-index:2;
+      max-width:420px;
+    }
+    .welcome-text{
+      color:#86f7d3;
+      font-size:14px;
+      letter-spacing:2px;
+      font-weight:700;
+    }
+    .left-content h1{
+      font-size:28px;
+      font-weight:700;
+      line-height:1.2;
+      margin:15px 0;
+    }
+    .left-content p{
+      font-size:18px;
+      color:#e5e5e5;
+    }
+    .form-panel{
+      padding:80px 70px;
+    }
+    .form-panel h2{
+      font-size:48px;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    .subtitle{
+      color:#6c757d;
+      margin-bottom:35px;
+    }
+    .form-control{
+      height:55px;
+      border-radius:10px;
+    }
+    .btn-login{
+      background:#111827;
+      color:#fff;
+      height:55px;
+      border-radius:10px;
+      font-size:20px;
+      font-weight:600;
+    }
+    .btn-login:hover{
+      background:#000;
+      color:#fff;
+    }
+    .small-link{
+      font-size:15px;
+    }
+    @media(max-width:991px){
+      .left-panel{
+        min-height:350px;
+      }
+      .form-panel{
+        padding:40px 25px;
+      }
+      .left-content h1{
+        font-size:34px;
+      }
+      .form-panel h2{
+        font-size:36px;
+      }
+    }
