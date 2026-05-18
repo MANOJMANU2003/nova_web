@@ -29,6 +29,9 @@
       align-items:center;
       justify-content:center;
     }
+    .category-select{
+    width:220px;
+}
 
     /* HERO */
 
