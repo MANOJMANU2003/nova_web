@@ -1,19 +1,54 @@
 
     let allProducts = [];
     let cart = [];
+    let filteredProducts = [];
     let currentPage = 1;
     const productsPerPage = 10;
     async function loadProducts(){
+
+    
 
       const response = await fetch(
         "https://cdn.jsdelivr.net/gh/adarshahelvar/NovaCart/products.json"
       );
 
       allProducts = await response.json();
+      filteredProducts = allProducts;
       displayProducts();
       setupPagination();
 
     }
+
+    function filterProducts(){
+
+  const selectedCategory =
+    document.getElementById("categoryFilter").value;
+
+  if(selectedCategory === "all"){
+
+    filteredProducts = allProducts;
+
+  }
+
+  else{
+
+    filteredProducts = allProducts.filter(product =>
+
+      product.category.toLowerCase().includes(
+        selectedCategory.toLowerCase()
+      )
+
+    );
+
+  }
+
+  currentPage = 1;
+
+  displayProducts();
+
+  setupPagination();
+
+}
 
     /* DISPLAY PRODUCTS */
 
@@ -23,7 +58,7 @@
       container.innerHTML = "";
       const start = (currentPage - 1) * productsPerPage;
       const end = start + productsPerPage;
-      const paginatedProducts = allProducts.slice(start, end);
+      const paginatedProducts = filteredProducts.slice(start, end);
       paginatedProducts.forEach(product => {
         container.innerHTML += `
 
@@ -192,7 +227,7 @@ else{
         document.getElementById("pagination");
       pagination.innerHTML = "";
       const totalPages =
-        Math.ceil(allProducts.length / productsPerPage);
+        Math.ceil(filteredProducts.length / productsPerPage);
       pagination.innerHTML += `
         <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
 
@@ -221,7 +256,7 @@ else{
     function changePage(page){
 
       const totalPages =
-        Math.ceil(allProducts.length / productsPerPage);
+        Math.ceil(filteredProducts.length / productsPerPage);
 
       if(page < 1 || page > totalPages) return;
 
@@ -291,6 +326,42 @@ function loginUser(){
   else{
     alert("Invalid Email or Password");
   }
+}
+
+function checkout() {
+
+  if(cart.length === 0){
+    alert("Cart is empty");
+    return;
+  }
+
+  const subtotal =
+    cart.reduce((total, item) => {
+      return total + (item.price * item.quantity);
+    }, 0);
+
+  const shipping = subtotal > 0 ? 10 : 0;
+
+  const orderData = {
+    items: cart,
+    subtotal: subtotal,
+    shipping: shipping,
+    total: subtotal + shipping,
+    checkoutDate: new Date().toLocaleString()
+  };
+
+  // STORE ORDER
+  localStorage.setItem(
+    "checkoutData",
+    JSON.stringify(orderData)
+  );
+
+  alert("Checkout Successful!");
+
+  console.log(orderData);
+
+  // OPTIONAL
+  // clearCart();
 }
 
 /* LOGOUT */
